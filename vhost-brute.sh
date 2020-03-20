@@ -43,6 +43,6 @@ WORDLIST=$2
 for name in $(cat $WORDLIST); do
     vhost=$name$DOMAIN
     echo -n "$vhost:"
-    curl -s -k $URI -H "Host: $vhost" | sha256sum | cut -d' ' -f1
+    curl -s -k $URI -H "Host: $vhost" | grep -v -i $vhost | sha256sum | cut -d' ' -f1
 done
 
